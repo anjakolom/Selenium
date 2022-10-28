@@ -16,11 +16,13 @@ public class TestBase {
 
     public WebDriver driver;
     public WebDriverWait wait;
+    public Helper helper;
 
 
     @Before
     public void start() {
         driver = new ChromeDriver();
+        helper = new Helper();
 
         /*EdgeOptions options = new EdgeOptions();
         driver = new EdgeDriver(options);*/
