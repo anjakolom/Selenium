@@ -17,6 +17,15 @@ public class Helper {
         }
     }
 
+    public boolean isElementPresent(WebElement webElement, By locator) {
+        try {
+            webElement.findElement(locator);
+            return true;
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+    }
+
     public List<String> getMenu(List<WebElement> menu) {
         List<String> a = new ArrayList<>();
         for (WebElement i : menu) {
@@ -30,7 +39,5 @@ public class Helper {
         driver.findElement(By.name("username")).sendKeys(login);
         driver.findElement(By.name("password")).sendKeys(password);
         driver.findElement(By.name("login")).click();
-
     }
-
 }
