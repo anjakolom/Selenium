@@ -40,4 +40,23 @@ public class Helper {
         driver.findElement(By.name("password")).sendKeys(password);
         driver.findElement(By.name("login")).click();
     }
+
+    public float getPrice(WebElement webElement) {
+
+        String str = webElement.getAttribute("innerText").trim();
+        if (str.contains("$")) {
+            int i = str.indexOf("$");
+            str = webElement.getAttribute("innerText").trim().substring(i + 1);
+        }
+
+        float price = 0;
+        try {
+            price = Float.valueOf(str);
+                   // Integer.valueOf(str);
+        } catch (NumberFormatException e) {
+            System.err.println("Неправильный формат строки!");
+        }
+        return price;
+    }
+
 }
