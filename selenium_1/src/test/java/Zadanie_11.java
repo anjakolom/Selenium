@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 public class Zadanie_11 extends TestBase {
     @Test
@@ -24,7 +25,8 @@ public class Zadanie_11 extends TestBase {
         helper.type(driver, By.cssSelector("[name=password]"), "password");
         helper.type(driver, By.cssSelector("[name=confirmed_password]"), "password");
         helper.type(driver, By.cssSelector("[name=email]"), email);
-        helper.select(driver, By.name("country_code"), "United States");
+        driver.findElement(By.cssSelector("span.select2-selection__arrow")).click();
+        driver.findElement(By.cssSelector("input.select2-search__field")).sendKeys("United States"+ Keys.ENTER);
         helper.type(driver, By.cssSelector("[name=postcode]"), "35004");
         helper.click(driver, By.cssSelector("[name=create_account]"));
         helper.isElementPresent(driver, By.id("notices"));

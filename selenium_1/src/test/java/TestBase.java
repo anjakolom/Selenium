@@ -31,8 +31,13 @@ public class TestBase {
         /*EdgeOptions options = new EdgeOptions();
         driver = new EdgeDriver(options);*/
 
-        //FirefoxOptions caps = new FirefoxOptions();
-        //driver = new FirefoxDriver();
+       /* FirefoxOptions caps = new FirefoxOptions();
+        //DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability(FirefoxDriver.Capability.MARIONETTE, false);
+        driver = new FirefoxDriver();*/
+
+        /*FirefoxOptions options = new FirefoxOptions();
+        WebDriver driver = new FirefoxDriver(options);*/
 
        /*FirefoxOptions options = new FirefoxOptions();
        DesiredCapabilities caps = new DesiredCapabilities();
