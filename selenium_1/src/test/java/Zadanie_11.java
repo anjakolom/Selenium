@@ -1,12 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 public class Zadanie_11 extends TestBase {
-
-
     @Test
     public void registration() {
         driver.get("http://localhost/litecart/en/");
@@ -28,31 +24,18 @@ public class Zadanie_11 extends TestBase {
         helper.type(driver, By.cssSelector("[name=password]"), "password");
         helper.type(driver, By.cssSelector("[name=confirmed_password]"), "password");
         helper.type(driver, By.cssSelector("[name=email]"), email);
-        helper.isElementPresent(driver, By.cssSelector("[name=country_code]"));
-        helper.select(driver, By.name("country_code"),"United States");
+        helper.select(driver, By.name("country_code"), "United States");
         helper.type(driver, By.cssSelector("[name=postcode]"), "35004");
-
-        helper.isElementPresent(driver, By.cssSelector("[name=create_account]"));
         helper.click(driver, By.cssSelector("[name=create_account]"));
-
         helper.isElementPresent(driver, By.id("notices"));
         Assert.assertEquals(driver.findElement(By.id("notices")).getText(), "Your customer account has been created.");
 
-        helper.click(driver, By.linkText("Logout"));
+        helper.logoutAccount(driver);
 
-        helper.isElementPresent(driver, By.id("notices"));
-        Assert.assertEquals(driver.findElement(By.id("notices")).getText(), "You are now logged out.");
+        helper.loginAccount(driver, email, "password");
+        Assert.assertEquals(driver.findElement(By.id("notices")).getText(), "You are now logged in as " + "FirstName-" + now + " LastName-" + now + ".");
 
-        helper.type(driver, By.cssSelector("[name=email]"), email);
-        helper.type(driver, By.cssSelector("[name=password]"), "password");
-        helper.click(driver, By.cssSelector("button[name=login]"));
-
-        Assert.assertEquals(driver.findElement(By.id("notices")).getText(), "You are now logged in as "+"FirstName-" + now+ " LastName-" + now+".");
-
-        helper.click(driver, By.linkText("Logout"));
-        helper.isElementPresent(driver, By.id("notices"));
-        Assert.assertEquals(driver.findElement(By.id("notices")).getText(), "You are now logged out.");
-        System.out.println();
+        helper.logoutAccount(driver);
 
     }
 

@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -53,7 +54,7 @@ public class Helper {
         float price = 0;
         try {
             price = Float.valueOf(str);
-                   // Integer.valueOf(str);
+            // Integer.valueOf(str);
         } catch (NumberFormatException e) {
             System.err.println("Неправильный формат строки!");
         }
@@ -64,6 +65,7 @@ public class Helper {
         wd.findElement(locator).click();
 
     }
+
     protected void type(WebDriver wd, By locator, String text) {
         click(wd, locator);
         if (text != null) {
@@ -77,6 +79,19 @@ public class Helper {
 
     protected void select(WebDriver wd, By locator, String text) {
         new Select(wd.findElement(locator)).selectByVisibleText(text);
+    }
+
+    public void logoutAccount(WebDriver driver) {
+        click(driver, By.linkText("Logout"));
+        isElementPresent(driver, By.id("notices"));
+        Assert.assertEquals(driver.findElement(By.id("notices")).getText(), "You are now logged out.");
+    }
+
+
+    public void loginAccount(WebDriver driver, String email, String password) {
+        type(driver, By.cssSelector("[name=email]"), email);
+        type(driver, By.cssSelector("[name=password]"), password);
+        click(driver, By.cssSelector("button[name=login]"));
     }
 
 }
