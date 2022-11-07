@@ -12,8 +12,8 @@ public class TestLiteCart extends TestBase{
     public void stickerTest(){
 
         driver.get("http://localhost/litecart/en/");
-        if (helper.isElementPresent(driver, By.cssSelector("li.product.column.shadow.hover-light"))) {
-            List<WebElement> ducks = driver.findElements(By.cssSelector("li.product.column.shadow.hover-light"));
+        if (helper.isElementPresent(driver, By.cssSelector("li.product"))) {
+            List<WebElement> ducks = driver.findElements(By.cssSelector("li.product"));
             for (int i=0; i<ducks.size(); i++) {
                 Collection<WebElement> element = ducks.get(i).findElements(By.cssSelector("div.sticker"));
                 Assert.assertEquals(1,element.size());
