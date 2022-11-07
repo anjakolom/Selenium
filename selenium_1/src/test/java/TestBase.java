@@ -34,10 +34,10 @@ public class TestBase {
         //FirefoxOptions caps = new FirefoxOptions();
         //driver = new FirefoxDriver();
 
-       /* FirefoxOptions options = new FirefoxOptions();
-        DesiredCapabilities caps = new DesiredCapabilities();
+       /*FirefoxOptions options = new FirefoxOptions();
+       DesiredCapabilities caps = new DesiredCapabilities();
        options.setBinary(new FirefoxBinary(new File("C:\\Program Files\\Firefox Nightly\\firefox.exe")));
-        driver = new FirefoxDriver(options);*/
+       driver = new FirefoxDriver(options);*/
 
         Duration duration = Duration.ofMillis(10);
         wait = new WebDriverWait(driver, duration);
