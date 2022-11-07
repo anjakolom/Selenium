@@ -38,16 +38,12 @@ public class Zadanie_10 extends TestBase {
         Assert.assertTrue(style.grayColor(rgb)); //Проверка на серый цвет шрифта
         Assert.assertFalse(style.redColor(rgb)); //Проверка на красный цвет шрифта
         Assert.assertTrue(style.getStyleLineThrough(driver, regularPrice)); //Проверка на зачеркнутый текст
-        int[] sizeRegularPrice = style.getArray(style.getSize(driver, regularPrice));
 
         int[] rgb2 = style.getArray(style.getStyle(driver, campaignPrice));
         Assert.assertFalse(style.grayColor(rgb2)); //Проверка на серый цвет шрифта
         Assert.assertTrue(style.redColor(rgb2)); //Проверка на красный цвет шрифта
         Assert.assertFalse(style.getStyleLineThrough(driver, campaignPrice)); //Проверка на зачеркнутый текст
-        int[] sizecampaignPrice = style.getArray(style.getSize(driver, campaignPrice));
-
-        Assert.assertTrue(sizeRegularPrice[0] < sizecampaignPrice[0]);  //Проверка на размер шрифта
-        Assert.assertTrue(sizeRegularPrice[1] < sizecampaignPrice[1]);
+        Assert.assertTrue(style.getSize(driver, regularPrice) < style.getSize(driver, campaignPrice));  //Проверка на размер шрифта
 
         float regularPriceInt = helper.getPrice(driver.findElement(By.cssSelector(regularPrice)));
         float campaignPriceInt = helper.getPrice(driver.findElement(By.cssSelector(campaignPrice)));
@@ -70,16 +66,12 @@ public class Zadanie_10 extends TestBase {
         Assert.assertTrue(style.grayColor(rgb)); //Проверка на серый цвет шрифта
         Assert.assertFalse(style.redColor(rgb)); //Проверка на красный цвет шрифта
         Assert.assertTrue(style.getStyleLineThrough(driver, regularPricePage)); //Проверка на зачеркнутый текст
-        sizeRegularPrice = style.getArray(style.getSize(driver, regularPricePage));
 
         rgb2 = style.getArray(style.getStyle(driver, campaignPricePage));
         Assert.assertFalse(style.grayColor(rgb2)); //Проверка на серый цвет шрифта
         Assert.assertTrue(style.redColor(rgb2)); //Проверка на красный цвет шрифта
         Assert.assertFalse(style.getStyleLineThrough(driver, campaignPricePage)); //Проверка на зачеркнутый текст
-        sizecampaignPrice = style.getArray(style.getSize(driver, campaignPricePage));
-
-        Assert.assertTrue(sizeRegularPrice[0] < sizecampaignPrice[0]);  //Проверка на размер шрифта
-        Assert.assertTrue(sizeRegularPrice[1] < sizecampaignPrice[1]);
+        Assert.assertTrue(style.getSize(driver, regularPricePage) < style.getSize(driver, campaignPricePage));  //Проверка на размер шрифта
 
         float regularPricePageInt = helper.getPrice(driver.findElement(By.cssSelector(regularPricePage)));
         float campaignPricePageInt = helper.getPrice(driver.findElement(By.cssSelector(campaignPricePage)));
