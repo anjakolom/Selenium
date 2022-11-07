@@ -48,7 +48,11 @@ public class Zadanie_11 extends TestBase {
         helper.click(driver, By.cssSelector("button[name=login]"));
 
         Assert.assertEquals(driver.findElement(By.id("notices")).getText(), "You are now logged in as "+"FirstName-" + now+ " LastName-" + now+".");
-        System.out.println("");
+
+        helper.click(driver, By.linkText("Logout"));
+        helper.isElementPresent(driver, By.id("notices"));
+        Assert.assertEquals(driver.findElement(By.id("notices")).getText(), "You are now logged out.");
+        System.out.println();
 
     }
 
