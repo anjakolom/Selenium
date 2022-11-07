@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Helper {
@@ -87,11 +88,14 @@ public class Helper {
         Assert.assertEquals(driver.findElement(By.id("notices")).getText(), "You are now logged out.");
     }
 
-
     public void loginAccount(WebDriver driver, String email, String password) {
         type(driver, By.cssSelector("[name=email]"), email);
         type(driver, By.cssSelector("[name=password]"), password);
         click(driver, By.cssSelector("button[name=login]"));
     }
-
+    public void checkSort(List<String> arrayCountries) {
+        List<String> arrayCountriesExpected = new ArrayList<String>(arrayCountries);
+        Collections.sort(arrayCountriesExpected);
+        Assert.assertEquals(arrayCountriesExpected, arrayCountries);
+    }
 }
