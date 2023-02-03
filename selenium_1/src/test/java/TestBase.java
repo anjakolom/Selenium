@@ -20,18 +20,20 @@ public class TestBase {
     public WebDriverWait wait;
     public Helper helper;
     public StyleHelper style;
+    public ProductHelper product;
 
 
     @Before
     public void start() {
-        driver = new ChromeDriver();
+        //driver = new ChromeDriver();
         helper = new Helper();
         style = new StyleHelper();
+        product = new ProductHelper();
 
         /*EdgeOptions options = new EdgeOptions();
         driver = new EdgeDriver(options);*/
 
-       /* FirefoxOptions caps = new FirefoxOptions();
+       /*FirefoxOptions caps = new FirefoxOptions();
         //DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability(FirefoxDriver.Capability.MARIONETTE, false);
         driver = new FirefoxDriver();*/
@@ -39,10 +41,10 @@ public class TestBase {
         /*FirefoxOptions options = new FirefoxOptions();
         WebDriver driver = new FirefoxDriver(options);*/
 
-       /*FirefoxOptions options = new FirefoxOptions();
+        FirefoxOptions options = new FirefoxOptions();
        DesiredCapabilities caps = new DesiredCapabilities();
        options.setBinary(new FirefoxBinary(new File("C:\\Program Files\\Firefox Nightly\\firefox.exe")));
-       driver = new FirefoxDriver(options);*/
+       driver = new FirefoxDriver(options);
 
         Duration duration = Duration.ofMillis(10);
         wait = new WebDriverWait(driver, duration);

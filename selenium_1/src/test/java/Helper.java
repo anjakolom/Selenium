@@ -20,15 +20,6 @@ public class Helper {
         }
     }
 
-    public boolean isElementPresent(WebElement webElement, By locator) {
-        try {
-            webElement.findElement(locator);
-            return true;
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
-    }
-
     public List<String> getMenu(List<WebElement> menu) {
         List<String> a = new ArrayList<>();
         for (WebElement i : menu) {
@@ -80,6 +71,7 @@ public class Helper {
 
     protected void select(WebDriver wd, By locator, String text) {
         new Select(wd.findElement(locator)).selectByVisibleText(text);
+
     }
 
     public void logoutAccount(WebDriver driver) {
