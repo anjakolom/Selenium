@@ -27,13 +27,13 @@ public class ProductHelper {
             Select sel = new Select(select.get(0));
             sel.selectByIndex(1);
         }
-
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         driver.findElement(By.cssSelector("button[name=add_cart_product]")).click();
         int count2 = Integer.parseInt(driver.findElement(By.cssSelector("span.quantity")).getText());
         while (count2 < count + 1) {
             count2 = Integer.parseInt(driver.findElement(By.cssSelector("span.quantity")).getText());
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         }
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(10));
     }
 
     public void removeFromCart(WebDriver driver, int count) {
@@ -41,15 +41,15 @@ public class ProductHelper {
         Assert.assertEquals(Integer.parseInt(driver.findElement(By.cssSelector("span.quantity")).getText()), count);
         driver.findElement(By.cssSelector("#cart a.link")).click();
 
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         while (count != 0) {
-            while (!driver.findElement(By.cssSelector("button[name=remove_cart_item]")).isDisplayed()){
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));}
             driver.findElement(By.cssSelector("button[name=remove_cart_item]")).click();
-            driver.navigate().refresh();
             if (!isElementPresent(driver,By.cssSelector("[class=\"sku\"]"))){
                 count=0;
             };
         }
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(10));
+
     }
 
     public boolean isElementPresent(WebDriver driver, By locator) {
