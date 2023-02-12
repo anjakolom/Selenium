@@ -3,11 +3,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class Helper {
 
@@ -89,5 +91,14 @@ public class Helper {
         List<String> arrayCountriesExpected = new ArrayList<String>(arrayCountries);
         Collections.sort(arrayCountriesExpected);
         Assert.assertEquals(arrayCountriesExpected, arrayCountries);
+    }
+    public ExpectedCondition<String> thereIsWindowOtherThan(Set<String> oldWindows){
+        return new ExpectedCondition <String>(){
+            public String apply(WebDriver driver){
+                Set <String> handles = driver.getWindowHandles();
+                handles.removeAll(oldWindows);
+                return handles.size()>0 ? handles.iterator().next():null;
+            }
+        };
     }
 }
