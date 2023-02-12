@@ -3,7 +3,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
@@ -36,20 +39,23 @@ public class ProductHelper {
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(10));
     }
 
-    public void removeFromCart(WebDriver driver, int count) {
+    public void removeFromCart(WebDriver driver,int count) {
         driver.get("http://localhost/litecart/en/");
         Assert.assertEquals(Integer.parseInt(driver.findElement(By.cssSelector("span.quantity")).getText()), count);
         driver.findElement(By.cssSelector("#cart a.link")).click();
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+        count = driver.findElements(By.cssSelector("td.item")).size();
         while (count != 0) {
+            List<WebElement> ducks = driver.findElements(By.cssSelector("td.item"));
             driver.findElement(By.cssSelector("button[name=remove_cart_item]")).click();
-            if (!isElementPresent(driver,By.cssSelector("[class=\"sku\"]"))){
-                count=0;
-            };
+            wait.until(ExpectedConditions.stalenessOf(ducks.get(count - 1)));
+            count = driver.findElements(By.cssSelector("td.item")).size();
+            System.out.println("remove");
+            if (!isElementPresent(driver, By.cssSelector("[class=\"sku\"]"))) {
+                count = 0;
+            }
         }
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(10));
-
     }
 
     public boolean isElementPresent(WebDriver driver, By locator) {
