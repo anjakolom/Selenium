@@ -87,18 +87,21 @@ public class Helper {
         type(driver, By.cssSelector("[name=password]"), password);
         click(driver, By.cssSelector("button[name=login]"));
     }
+
     public void checkSort(List<String> arrayCountries) {
         List<String> arrayCountriesExpected = new ArrayList<String>(arrayCountries);
         Collections.sort(arrayCountriesExpected);
         Assert.assertEquals(arrayCountriesExpected, arrayCountries);
     }
-    public ExpectedCondition<String> thereIsWindowOtherThan(Set<String> oldWindows){
-        return new ExpectedCondition <String>(){
-            public String apply(WebDriver driver){
-                Set <String> handles = driver.getWindowHandles();
+
+    public ExpectedCondition<String> thereIsWindowOtherThan(Set<String> oldWindows) {
+        return new ExpectedCondition<String>() {
+            public String apply(WebDriver driver) {
+                Set<String> handles = driver.getWindowHandles();
                 handles.removeAll(oldWindows);
-                return handles.size()>0 ? handles.iterator().next():null;
+                return handles.size() > 0 ? handles.iterator().next() : null;
             }
         };
     }
+
 }
