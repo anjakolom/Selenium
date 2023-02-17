@@ -5,11 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.logging.Level;
 
 public class TestBase {
 
@@ -49,7 +52,11 @@ public class TestBase {
         style = new StyleHelper();
         product = new ProductHelper();
 
+        LoggingPreferences prefs = new LoggingPreferences();
+        prefs.enable("browser", Level.ALL);
         ChromeOptions options = new ChromeOptions();
+        options.setCapability(CapabilityType.LOGGING_PREFS, prefs);
+
         driver = new EventFiringWebDriver(new ChromeDriver(options));
         driver.register(new MyListener());
         Duration duration = Duration.ofMillis(10);
@@ -75,7 +82,6 @@ public class TestBase {
         wait = new WebDriverWait(driver, duration);*/
 
     }
-
 
     @After
     public void stop() {
