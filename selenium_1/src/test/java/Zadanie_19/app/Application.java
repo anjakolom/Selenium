@@ -34,7 +34,7 @@ public class Application {
     public void addToCart() {
 
         litecart.open();
-        int count = litecart.countProduct();
+        int count = getCount();
         Assert.assertTrue(litecart.column.isDisplayed());
         String productName = litecart.nameProduct(0);
         litecart.product.get(0).click();
@@ -65,6 +65,10 @@ public class Application {
             count = checkout.item.size();
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(10));
+        litecart.open();
     }
 
+    public Integer getCount() {
+        return litecart.countProduct();
+    }
 }
